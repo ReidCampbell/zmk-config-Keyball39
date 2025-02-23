@@ -1,6 +1,6 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 
-/ {
+ / {
     chosen {
         zephyr,display = &oled;
         zmk,kscan = &kscan0;
@@ -8,7 +8,7 @@
     };
 
     default_transform: keymap_transform_0 {
-		compatible = "zmk,matrix-transform";
+        compatible = "zmk,matrix-transform";
         columns = <12>;
         rows = <4>;
 
@@ -19,44 +19,26 @@
             RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(3,11) RC(3,10)                         RC(3,6)
         >;
     };
-	
+    
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
 
         diode-direction = "col2row";
-		row-gpios
-			= <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            ;
-    };
-};    
-
-&pinctrl {
-    i2c0_default: i2c0_default {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
-        };
-    };
-
-    i2c0_sleep: i2c0_sleep {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
-            low-power-enable;
-        };
+        row-gpios
+            = <&rp2040_gpio 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&rp2040_gpio 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&rp2040_gpio 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&rp2040_gpio 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
 };
 
 &i2c0 {
     status = "okay";
-    compatible = "nordic,nrf-twi";
-    pinctrl-0 = <&i2c0_default>;
-    pinctrl-1 = <&i2c0_sleep>;
-    pinctrl-names = "default", "sleep";
+    compatible = "raspberrypi,rp2040-i2c";
+    sda-pin = <4>;  // Update with actual SDA pin from your PCB
+    scl-pin = <5>;  // Update with actual SCL pin from your PCB
+    clock-frequency = <I2C_BITRATE_STANDARD>;
 
     oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
