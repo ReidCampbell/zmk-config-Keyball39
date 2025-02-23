@@ -7,10 +7,11 @@
 #define SNIPE   6
 
 #include <behaviors/mouse_keys.dtsi>
+#include <dt-bindings/zmk/mouse.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/pointing.h>
 
 &lt {
     tapping-term-ms = <240>;
@@ -93,12 +94,12 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            label = "QWRT";
+            label = "BASE";
             bindings = <
-&mt ESCAPE Q      &kp W           &kp E             &kp R                     &kp T                                  &kp Y        &kp U               &kp I              &kp O            &kp P
-&kp A             &mt LEFT_ALT S  &mt LEFT_SHIFT D  &mt LCTRL F               &kp G                                  &kp H        &mt LEFT_CONTROL J  &mt RIGHT_SHIFT K  &mt RIGHT_ALT L  &lt 3 MINUS
-&mt LEFT_SHIFT Z  &kp X           &kp C             &kp V                     &kp B                                  &kp N        &kp M               &kp COMMA          &kp DOT          &kp SLASH
-&kp LEFT_SHIFT    &kp LGUI        &kp LALT          &mt LEFT_SHIFT LC(SPACE)  &lt 2 TAB  &lt 1 SPACE  &kp BACKSPACE  &lt 4 ENTER                                                          &kp RSHFT
+&kp W           &kp L     &kp Y     &kp P                     &kp B                                  &kp Z        &kp F  &kp O     &kp U      &kp SQT
+&kp C           &kp R     &kp S     &kp T                     &kp G                                  &kp M        &kp N  &kp E     &kp I      &kp A
+&kp Q           &kp J     &kp V     &kp D                     &kp K                                  &kp X        &kp H  &kp FSLH  &kp COMMA  &kp DOT
+&kp LEFT_SHIFT  &kp LGUI  &kp LALT  &mt LEFT_SHIFT LC(SPACE)  &lt 2 TAB  &lt 1 SPACE  &kp BACKSPACE  &lt 4 ENTER                              &kp RSHFT
             >;
         };
 
